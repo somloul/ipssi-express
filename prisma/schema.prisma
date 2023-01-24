@@ -7,5 +7,27 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")*
+  url      = env("DATABASE_URL")
+}
+
+model TodoList {
+  id        String     @id @unique @default(uuid())
+  name      String
+  todoItems TodoItem[]
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model TodoItem {
+  id          String   @id @unique @default(uuid())
+  description String
+  todoListId  String
+  todoList    TodoList @relation(fields: [todoListId], references: [id])
+}
+
+model User {
+  id       String     @id @unique @default(uuid())
+  username String     @unique @db.VarChar(64)
+  password String
+  todos    TodoList[]
 }
