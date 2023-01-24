@@ -1,5 +1,6 @@
 import express from 'express'
 import * as dotenv from 'dotenv'
+import db from './db'
 
 dotenv.config()
 
@@ -9,7 +10,6 @@ const PORT = 1234
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  console.log(process.env.DATABASE_URL)
   res.status(200).json({ message: 'hello' })
 })
 
