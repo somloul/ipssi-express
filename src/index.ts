@@ -5,11 +5,12 @@ import todoListRoutes from './routes/todoList'
 import todoItemRoutes from './routes/todoItem'
 import { protect } from './modules/auth'
 import { createNewUser, signIn } from './handlers/user'
+import config from './config'
 
 dotenv.config()
 
 const app = express()
-const PORT = 1234
+const PORT = config.port
 
 app.use(express.json())
 
